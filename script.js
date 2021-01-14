@@ -9,9 +9,21 @@ myImage.addEventListener('load', function () {
     canvas.height = 700;
 
     ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
+    const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    console.log(pixels);
 
     let particlesArray = [];
     const numberOfParticles = 5000;
+
+    let mappedImage = [];
+    for (let y = 0; y < canvas.height; y++) {
+        let row = [];
+        for (let x = 0; x < canvas.width; x++) {
+            const red = pixels.data[(y * 4 * pixels.width) + (x * 4)];
+            const green = pixels.data[(y * 4 * pixels.width) + (x * 4 + 1)];
+            const blue = pixels.data[(y * 4 * pixels.width) + (x * 4 + 2)];
+        }
+    }
 
     class Particle {
         constructor() {
