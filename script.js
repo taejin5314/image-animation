@@ -7,6 +7,14 @@ myImage.addEventListener('load', function () {
     const ctx = canvas.getContext('2d');
     canvas.width = 700;
     canvas.height = 700;
+    const gradient1 = ctx.createLinearGradient(0, 0, 0, canvas.height)
+    gradient1.addColorStop(0.2, 'pink');
+    gradient1.addColorStop(0.3, 'red');
+    gradient1.addColorStop(0.4, 'orange');
+    gradient1.addColorStop(0.5, 'yellow');
+    gradient1.addColorStop(0.6, 'green');
+    gradient1.addColorStop(0.7, 'turquoise');
+    gradient1.addColorStop(0.8, 'violet');
 
     ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -74,9 +82,10 @@ myImage.addEventListener('load', function () {
         }
         draw() {
             ctx.beginPath();
-            if ((mappedImage[this.position1]) && (mappedImage[this.position1][this.position2])) {
-                ctx.fillStyle = mappedImage[this.position1][this.position2][1];
-            }
+            // if ((mappedImage[this.position1]) && (mappedImage[this.position1][this.position2])) {
+            //     ctx.fillStyle = mappedImage[this.position1][this.position2][1];
+            // }
+            ctx.fillStyle = gradient1;
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
