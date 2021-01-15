@@ -82,11 +82,13 @@ myImage.addEventListener('load', function () {
         }
         draw() {
             ctx.beginPath();
-            // if ((mappedImage[this.position1]) && (mappedImage[this.position1][this.position2])) {
-            //     ctx.fillStyle = mappedImage[this.position1][this.position2][1];
-            // }
-            ctx.fillStyle = gradient1;
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            if ((mappedImage[this.position1]) && (mappedImage[this.position1][this.position2])) {
+                ctx.fillStyle = mappedImage[this.position1][this.position2][1];
+                ctx.strokeStyle = mappedImage[this.position1][this.position2][1]
+            }
+            // ctx.fillStyle = gradient1;
+            // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.strokeRect(this.x, this.y, this.size * 3, this.size * 3)
             ctx.fill();
         }
     }
