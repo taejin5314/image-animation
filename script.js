@@ -61,7 +61,8 @@ myImage.addEventListener('load', function () {
             this.position1 = Math.floor(this.y);
             this.position2 = Math.floor(this.x);
             this.angle = 0;
-            this.letter = letters[Math.floor(Math.random() * letters.length)]
+            this.letter = letters[Math.floor(Math.random() * letters.length)];
+            this.random = Math.random();
         }
         update() {
             this.position1 = Math.floor(this.y);
@@ -92,7 +93,9 @@ myImage.addEventListener('load', function () {
             // ctx.fillStyle = gradient1;
             // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             // ctx.strokeRect(this.x, this.y, this.size * 3, this.size * 3)
-            ctx.fillText(this.letter, this.x, this.y)
+            ctx.font = '20px Arial'
+            if (this.random < 0.1) ctx.fillText(this.letter, this.x, this.y);
+            else ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
         }
     }
@@ -112,7 +115,8 @@ myImage.addEventListener('load', function () {
         ctx.globalAlpha = 0.2;
         for (let i = 0; i < particlesArray.length; i++) {
             particlesArray[i].update();
-            ctx.globalAlpha = particlesArray[i].speed * 0.5;
+            // ctx.globalAlpha = particlesArray[i].speed * 0.5;
+            ctx.globalAlpha = 1;
             particlesArray[i].draw();
         }
         requestAnimationFrame(animate);
