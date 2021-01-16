@@ -17,6 +17,14 @@ myImage.addEventListener('load', function () {
     gradient1.addColorStop(0.8, 'violet');
 
     const letters = ['W', 'I', 'T', 'C', 'H', 'E', 'R'];
+    let switcher = 1;
+    let counter = 0;
+    setInterval(function () {
+        counter++;
+        if (counter % 12 === 0) {
+            switcher *= -1;
+        }
+    }, 1100)
 
     ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -72,6 +80,18 @@ myImage.addEventListener('load', function () {
             }
             let movement = (2.5 - this.speed) + this.velocity;
             this.angle += this.speed / 10;
+            this.size = this.speed * 1.5;
+
+            if (switcher === 1) {
+                ctx.globalCompositeOperation = 'luminosity';
+            } else {
+                ctx.globalCompositeOperation = 'soft-light';
+            }
+
+            if (counter % 12 === 0) {
+                this.x = Math.random() * canvas.width;
+                this.y = 0;
+            }
 
             this.y += movement + Math.sin(this.angle) * 1;
             this.x += movement + Math.cos(this.angle) * 1;
@@ -93,7 +113,7 @@ myImage.addEventListener('load', function () {
             // ctx.fillStyle = gradient1;
             // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             // ctx.strokeRect(this.x, this.y, this.size * 3, this.size * 3)
-            ctx.font = '20px Arial'
+            ctx.font = '10px Arial'
             if (this.random < 0.1) ctx.fillText(this.letter, this.x, this.y);
             else ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
