@@ -16,6 +16,8 @@ myImage.addEventListener('load', function () {
     gradient1.addColorStop(0.7, 'turquoise');
     gradient1.addColorStop(0.8, 'violet');
 
+    const letters = ['W', 'I', 'T', 'C', 'H', 'E', 'R'];
+
     ctx.drawImage(myImage, 0, 0, canvas.width, canvas.height);
     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -59,6 +61,7 @@ myImage.addEventListener('load', function () {
             this.position1 = Math.floor(this.y);
             this.position2 = Math.floor(this.x);
             this.angle = 0;
+            this.letter = letters[Math.floor(Math.random() * letters.length)]
         }
         update() {
             this.position1 = Math.floor(this.y);
@@ -88,7 +91,8 @@ myImage.addEventListener('load', function () {
             }
             // ctx.fillStyle = gradient1;
             // ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.strokeRect(this.x, this.y, this.size * 3, this.size * 3)
+            // ctx.strokeRect(this.x, this.y, this.size * 3, this.size * 3)
+            ctx.fillText(this.letter, this.x, this.y)
             ctx.fill();
         }
     }
